@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Admin Product Register</title>
+</head>
+<body>
+    <h1> 관리자 상품 등록</h1>
+
+    <form th:action="@{/admin/product/register}" th:object="${adminProductDto}" method="post">
+        <div role="alert" th:if="${#fields.hasAnyErrors()}">
+            <div th:each="err : ${#fields.allErrors()}" th:text="${err}"></div>
+        </div>
+        <label for="productName">상품명</label>
+        <input type="text" name="productName" id="productName">
+        <br>
+        <label for="productImage">상품 이미지</label>
+        <input type="text" name="productImage" id="productImage">
+        <br>
+        <label for="productDescription">상품 설명</label>
+        <input type="text" name="productDescription" id="productDescription">
+        <br>
+        <label for="productPrice">상품 가격</label>
+        <input type="number" name="productPrice" id="productPrice">
+        <br>
+        <label for="productQuantity">상품 개수</label>
+        <input type="number" name="productQuantity" id="productQuantity">
+        <br>
+        <label for="productEtc">상품 기타</label>
+        <input type="text" name="productEtc" id="productEtc">
+        <input type="submit" value="저장">
+    </form>
+
+</body>
+</html>

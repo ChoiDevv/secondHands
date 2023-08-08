@@ -17,13 +17,13 @@ public class ProductDto {
     private String productName;
     private String productImage;
     private String productDescription;
-    private BigDecimal productPrice;
-    private BigDecimal productQuantity;
+    private Integer productPrice;
+    private Integer productQuantity;
     private Boolean productHide;
     private String productEtc;
 
     @Builder
-    public ProductDto(Integer productId, String productName, String productImage, String productDescription, BigDecimal productPrice, BigDecimal productQuantity, Boolean productHide, String productEtc) {
+    public ProductDto(Integer productId, String productName, String productImage, String productDescription, Integer productPrice, Integer productQuantity, Boolean productHide, String productEtc) {
         this.productId = productId;
         this.productName = productName;
         this.productImage = productImage;
