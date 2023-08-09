@@ -3,6 +3,7 @@ package com.shop.secondHands.product.service;
 import com.shop.secondHands.admin.dto.AdminProductDto;
 import com.shop.secondHands.product.dto.ProductDto;
 import com.shop.secondHands.product.entity.Product;
+import com.shop.secondHands.product.exception.ProductNotFoundException;
 import com.shop.secondHands.product.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,12 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<ProductDto> products() {
         return ProductDto.of(productRepository.findAll());
+    }
+
+    @Override
+    public ProductDto product(Integer id) {
+        return ProductDto.of(productRepository.findById(id)
+                .orElseThrow(() -> new ProductNotFoundException("해당 게시물을 찾을 수 없습니다.")));
     }
 
     public void save(AdminProductDto adminProductDto, Boolean productHide) {

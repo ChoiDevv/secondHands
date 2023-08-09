@@ -8,4 +8,6 @@ import java.util.List;
 @Service
 public interface ProductService {
     List<ProductDto> products();
+
+    ProductDto product(Integer id);
 }

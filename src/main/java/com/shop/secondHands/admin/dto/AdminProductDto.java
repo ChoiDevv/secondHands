@@ -35,8 +35,10 @@ public class AdminProductDto {
 
     private String productEtc;
 
-    @Builder
-    public AdminProductDto(String productName, String productImage, String productDescription, Integer productPrice, Integer productQuantity, Boolean productHide, String productEtc) {
+    @NotEmpty(message = "상품 종류는 필수입니다.")
+    private String productType;
+
+    public AdminProductDto(String productName, String productImage, String productDescription, Integer productPrice, Integer productQuantity, Boolean productHide, String productEtc, String productType) {
         this.productName = productName;
         this.productImage = productImage;
         this.productDescription = productDescription;
@@ -44,5 +46,6 @@ public class AdminProductDto {
         this.productQuantity = productQuantity;
         this.productHide = productHide;
         this.productEtc = productEtc;
+        this.productType = productType;
     }
 }

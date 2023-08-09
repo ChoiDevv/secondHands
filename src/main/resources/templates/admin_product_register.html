@@ -46,8 +46,17 @@
         </div>
         <br>
 
+        <label for="productType">상품 종류</label>
+        <input type="text" name="productType" id="productType">
+        <div role="alert" th:if="${#fields.hasErrors('productType')}">
+            <span th:each="err : ${#fields.errors('productType')}" th:text="${err}" class="error"></span>
+        </div>
+        <br>
+
         <label for="productEtc">상품 기타</label>
         <input type="text" name="productEtc" id="productEtc">
+        <br>
+
 
         <input type="submit" value="저장">
     </form>

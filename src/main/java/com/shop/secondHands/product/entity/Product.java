@@ -44,8 +44,11 @@ public class Product extends BaseEntity {
     @Column
     private String productEtc;
 
+    @Column
+    private String productType;
+
     @Builder
-    public Product(String productName, String productImage, String productDescription, Integer productPrice, Integer productQuantity, Boolean productHide, String productEtc) {
+    public Product(String productName, String productImage, String productDescription, Integer productPrice, Integer productQuantity, Boolean productHide, String productEtc, String productType) {
         this.productName = productName;
         this.productImage = productImage;
         this.productDescription = productDescription;
@@ -53,6 +56,7 @@ public class Product extends BaseEntity {
         this.productQuantity = productQuantity;
         this.productHide = productHide;
         this.productEtc = productEtc;
+        this.productType = productType;
     }
 
     public static Product toEntity(AdminProductDto adminProductDto, Boolean productHide) {
@@ -64,6 +68,7 @@ public class Product extends BaseEntity {
                 .productQuantity(adminProductDto.getProductQuantity())
                 .productHide(productHide)
                 .productEtc(adminProductDto.getProductEtc())
+                .productType(adminProductDto.getProductType())
                 .build();
     }
 }
