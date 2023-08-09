@@ -2,6 +2,7 @@ package com.shop.secondHands.admin.dto;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 import lombok.Builder;
 import lombok.Getter;
@@ -24,8 +25,10 @@ public class AdminProductDto {
     @NotEmpty(message = "상품 설명은 필수입니다.")
     private String productDescription;
 
+    @NotNull(message = "상품 가격을 입력해주세요.")
     private Integer productPrice;
 
+    @NotNull(message = "상품 개수를 입력해주세요.")
     private Integer productQuantity;
 
     private Boolean productHide;

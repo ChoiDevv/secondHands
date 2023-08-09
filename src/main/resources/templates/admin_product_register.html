@@ -11,26 +11,44 @@
     <h1> 관리자 상품 등록</h1>
 
     <form th:action="@{/admin/product/register}" th:object="${adminProductDto}" method="post">
-        <div role="alert" th:if="${#fields.hasAnyErrors()}">
-            <div th:each="err : ${#fields.allErrors()}" th:text="${err}"></div>
-        </div>
         <label for="productName">상품명</label>
         <input type="text" name="productName" id="productName">
+        <div role="alert" th:if="${#fields.hasErrors('productName')}">
+            <span th:each="err : ${#fields.errors('productName')}" th:text="${err}" class="error"></span>
+        </div>
         <br>
+
         <label for="productImage">상품 이미지</label>
         <input type="text" name="productImage" id="productImage">
+        <div role="alert" th:if="${#fields.hasErrors('productImage')}">
+            <span th:each="err : ${#fields.errors('productImage')}" th:text="${err}" class="error"></span>
+        </div>
         <br>
+
         <label for="productDescription">상품 설명</label>
         <input type="text" name="productDescription" id="productDescription">
+        <div role="alert" th:if="${#fields.hasErrors('productDescription')}">
+            <span th:each="err : ${#fields.errors('productDescription')}" th:text="${err}" class="error"></span>
+        </div>
         <br>
+
         <label for="productPrice">상품 가격</label>
         <input type="number" name="productPrice" id="productPrice">
+        <div role="alert" th:if="${#fields.hasErrors('productPrice')}">
+            <span th:each="err : ${#fields.errors('productPrice')}" th:text="${err}" class="error"></span>
+        </div>
         <br>
+
         <label for="productQuantity">상품 개수</label>
         <input type="number" name="productQuantity" id="productQuantity">
+        <div role="alert" th:if="${#fields.hasErrors('productQuantity')}">
+            <span th:each="err : ${#fields.errors('productQuantity')}" th:text="${err}" class="error"></span>
+        </div>
         <br>
+
         <label for="productEtc">상품 기타</label>
         <input type="text" name="productEtc" id="productEtc">
+
         <input type="submit" value="저장">
     </form>
 
