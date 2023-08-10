@@ -1,17 +1,14 @@
-<title>Main</title>
-<link rel="stylesheet" type="text/css" th:href="@{/style.css}">
-<link rel="stylesheet" type="text/css" th:href="@{/bootstrap.min.css}">
-<h1>Product Page</h1>
-
-<div th:each="product: ${products}">
-    <div class="card" style="width: 18rem;">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-            <a th:href="@{|/main/products/${product.productId}|}" th:text="${product.productName}"></a>
-            <p th:text="|가격 : ${product.productPrice}|" class="card-text"></p>
-            <p th:text="|남은 개수 : ${product.productQuantity}" class="card-text"></p>
-            <p th:text="|기타 : ${product.productEtc}" class="card-text"></p>
-            <p th:text="|종류 : ${product.productType}" class="card-text"></p>
+<html layout:decorate="~{layout}">
+    <div layout:fragment="content" th:each="product: ${products}">
+        <div class="card" style="width: 18rem;">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+                <a th:href="@{|/main/products/${product.productId}|}" th:text="${product.productName}"></a>
+                <p th:text="|가격 : ${product.productPrice}|" class="card-text"></p>
+                <p th:text="|남은 개수 : ${product.productQuantity}" class="card-text"></p>
+                <p th:text="|기타 : ${product.productEtc}" class="card-text"></p>
+                <p th:text="|종류 : ${product.productType}" class="card-text"></p>
+            </div>
         </div>
     </div>
-</div>
+</html>
