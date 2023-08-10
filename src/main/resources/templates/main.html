@@ -1,42 +1,17 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Main</title>
-</head>
-<body>
-    <h1>Product Page</h1>
+<title>Main</title>
+<link rel="stylesheet" type="text/css" th:href="@{/style.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/bootstrap.min.css}">
+<h1>Product Page</h1>
 
-    <table>
-        <thead>
-            <tr>
-                <th>상품 id</th>
-                <th>상품 이름</th>
-                <th>상품 이미지</th>
-                <th>상품 가격</th>
-                <th>상품 개수</th>
-                <th>상품 보이기</th>
-                <th>상품 기타</th>
-                <th>상품 종류</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="product : ${products}">
-                <td>
-                    <a th:href="@{|/main/products/${product.productId}|}" th:text="${product.productId}"></a>
-                </td>
-                <td th:text="${product.productName}"></td>
-                <td th:text="${product.productImage}"></td>
-                <td th:text="${product.productPrice}"></td>
-                <td th:text="${product.productQuantity}"></td>
-                <td th:text="${product.productHide}"></td>
-                <td th:text="${product.productEtc}"></td>
-                <td th:text="${product.productType}"></td>
-            </tr>
-        </tbody>
-    </table>
-</body>
-</html>
+<div th:each="product: ${products}">
+    <div class="card" style="width: 18rem;">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+            <a th:href="@{|/main/products/${product.productId}|}" th:text="${product.productName}"></a>
+            <p th:text="|가격 : ${product.productPrice}|" class="card-text"></p>
+            <p th:text="|남은 개수 : ${product.productQuantity}" class="card-text"></p>
+            <p th:text="|기타 : ${product.productEtc}" class="card-text"></p>
+            <p th:text="|종류 : ${product.productType}" class="card-text"></p>
+        </div>
+    </div>
+</div>
