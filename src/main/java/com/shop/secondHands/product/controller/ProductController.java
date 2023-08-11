@@ -20,7 +20,7 @@ public class ProductController {
     public String products(Model model) {
         List<ProductDto> products = productService.products();
         model.addAttribute("products", products);
-        return "main";
+        return "main_products";
     }
 
     @GetMapping(value = "/main/products/{id}")

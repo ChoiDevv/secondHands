@@ -16,33 +16,35 @@ public class UserController {
 
     private final UserService userService;
 
-    @GetMapping(value = "/login")
-    public String login() {
-        return "login";
-    }
-
-    @GetMapping(value = "/user/register")
+    @GetMapping(value = "/register")
     public String userRegister(UserDto userDto) {
-        return "user_register";
+        return "register";
     }
 
-    @PostMapping(value = "/user/register")
+    @PostMapping(value = "/register")
     public String userRegister(@Valid UserDto userDto, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
-            return "user_register";
+            return "register";
         }
 
         try {
             userService.userRegister(userDto, bindingResult);
         } catch (DataIntegrityViolationException e) {
             bindingResult.reject("registerFailed", "이미 가입된 사용자입니다.");
-            return "user_register";
+            return "register";
         } catch (Exception e) {
             bindingResult.reject("registerFailed", e.getMessage());
-            return "user_register";
+            return "register";
         }
 
         return "redirect:/login";
     }
+
+    @GetMapping(value = "/login")
+    public String login() {
+        return "login";
+    }
+
+
 }
