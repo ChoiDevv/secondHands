@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
 @NoArgsConstructor
@@ -37,5 +38,9 @@ public class Basket extends BaseEntity {
                 .product(product)
                 .count(count)
                 .build();
+    }
+
+    public void count() {
+        this.count += 1;
     }
 }

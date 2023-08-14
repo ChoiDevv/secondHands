@@ -39,8 +39,7 @@ public class UserServiceImpl implements UserService {
 
         if (basketRepository.existsByUsersAndProduct(currentUser, findByProductId(productId))) {
             Basket basket = findBasket(currentUser, productId);
-            Integer count = basket.getCount();
-            count += 1;
+            basket.count();
             basketRepository.save(basket);
         } else {
             saveBasket(currentUser, productId);
@@ -62,7 +61,7 @@ public class UserServiceImpl implements UserService {
     }
 
     public void saveBasket(Users currentUser, Integer productId) {
-        basketRepository.save(Basket.toEntity(currentUser, findByProductId(productId), 0));
+        basketRepository.save(Basket.toEntity(currentUser, findByProductId(productId), 1));
     }
 
     public Basket findBasket(Users currentUser, Integer productId) {
