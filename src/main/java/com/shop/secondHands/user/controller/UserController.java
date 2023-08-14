@@ -5,10 +5,14 @@ import com.shop.secondHands.user.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.security.Principal;
 
 @Controller
 @RequiredArgsConstructor
@@ -46,5 +50,9 @@ public class UserController {
         return "login";
     }
 
-
+    @GetMapping(value = "/main/products/{id}/purchase")
+    public String singlePurchase(@PathVariable("id") Integer productId, Authentication authentication) {
+        userService.singlePurchase(productId, authentication);
+        return "main_purchase";
+    }
 }

@@ -30,4 +30,9 @@ public class ProductServiceImpl implements ProductService {
     public void save(AdminProductDto adminProductDto, Boolean productHide) {
         productRepository.save(Product.toEntity(adminProductDto, productHide));
     }
+
+    public Product findByProductId(Integer id) {
+        return productRepository.findById(id)
+                .orElseThrow(() -> new ProductNotFoundException("상품을 찾을 수 없습니다."));
+    }
 }
