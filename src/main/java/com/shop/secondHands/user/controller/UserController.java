@@ -61,4 +61,9 @@ public class UserController {
         userService.registerCart(productId, authentication);
         return "main_cart_completed";
     }
+
+    @GetMapping(value = "/main/purchase")
+    public String purchase() {
+        return "main_purchase";
+    }
 }
