@@ -34,7 +34,19 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void singlePurchase(Integer productId, Authentication authentication) {
+        Users currentUser = findByUserId(userRepository.findByUsername(currentUsername(authentication)).get().getId());
 
+        if (basketRepository.existsByUsersAndProduct(currentUser, findByProductId(productId))) {
+            Basket basket = findBasket(currentUser, productId);
+            basket.count();
+            basketRepository.save(basket);
+        } else {
+            saveBasket(currentUser, productId);
+        }
+    }
+
+    @Override
+    public void registerCart(Integer productId, Authentication authentication) {
         Users currentUser = findByUserId(userRepository.findByUsername(currentUsername(authentication)).get().getId());
 
         if (basketRepository.existsByUsersAndProduct(currentUser, findByProductId(productId))) {

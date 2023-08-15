@@ -12,4 +12,6 @@ public interface UserService {
     void userRegister(UserDto userDto, BindingResult bindingResult);
 
     void singlePurchase(Integer productId, Authentication authentication);
+
+    void registerCart(Integer productId, Authentication authentication);
 }

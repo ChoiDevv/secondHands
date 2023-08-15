@@ -53,6 +53,12 @@ public class UserController {
     @GetMapping(value = "/main/products/{id}/purchase")
     public String singlePurchase(@PathVariable("id") Integer productId, Authentication authentication) {
         userService.singlePurchase(productId, authentication);
-        return "main_purchase";
+        return "main_purchase_question";
+    }
+
+    @GetMapping(value = "/main/products/{id}/my-cart")
+    public String registerCart(@PathVariable("id") Integer productId, Authentication authentication) {
+        userService.registerCart(productId, authentication);
+        return "main_cart_completed";
     }
 }
