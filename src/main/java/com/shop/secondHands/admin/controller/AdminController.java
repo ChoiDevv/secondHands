@@ -10,6 +10,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 @Controller
 @RequiredArgsConstructor
@@ -28,12 +31,11 @@ public class AdminController {
     }
 
     @PostMapping(value = "/admin/product/register")
-    public String registerProduct(@Valid AdminProductDto adminProductDto, BindingResult bindingResult) {
-
+    public String registerProduct(@Valid AdminProductDto adminProductDto, BindingResult bindingResult, @RequestParam(value="productImage",required = false) MultipartFile productImage) throws IOException {
         if (bindingResult.hasErrors()) {
             return "admin_product_register";
         }
-        adminService.registerProduct(adminProductDto);
+        adminService.registerProduct(adminProductDto, productImage);
         return "redirect:/admin/main";
     }
 }

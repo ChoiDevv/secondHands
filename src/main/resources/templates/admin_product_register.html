@@ -2,7 +2,7 @@
     <div layout:fragment="content">
         <h1> 관리자 상품 등록</h1>
 
-        <form th:action="@{/admin/product/register}" th:object="${adminProductDto}" method="post">
+        <form th:action="@{/admin/product/register}" th:object="${adminProductDto}" method="post" enctype="multipart/form-data">
             <label for="productName">상품명</label>
             <input type="text" name="productName" id="productName">
             <div role="alert" th:if="${#fields.hasErrors('productName')}">
@@ -11,10 +11,7 @@
             <br>
 
             <label for="productImage">상품 이미지</label>
-            <input type="text" name="productImage" id="productImage">
-            <div role="alert" th:if="${#fields.hasErrors('productImage')}">
-                <span th:each="err : ${#fields.errors('productImage')}" th:text="${err}" class="error"></span>
-            </div>
+            <input type="file" name="productImage" id="productImage">
             <br>
 
             <label for="productDescription">상품 설명</label>

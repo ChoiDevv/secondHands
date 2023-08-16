@@ -8,6 +8,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.math.BigDecimal;
 
@@ -18,9 +19,6 @@ public class AdminProductDto {
 
     @NotEmpty(message = "상품명은 필수입니다.")
     private String productName;
-
-    @NotEmpty(message = "상품 이미지는 필수입니다.")
-    private String productImage;
 
     @NotEmpty(message = "상품 설명은 필수입니다.")
     private String productDescription;
@@ -38,9 +36,10 @@ public class AdminProductDto {
     @NotEmpty(message = "상품 종류는 필수입니다.")
     private String productType;
 
-    public AdminProductDto(String productName, String productImage, String productDescription, Integer productPrice, Integer productQuantity, Boolean productHide, String productEtc, String productType) {
+    private MultipartFile imageFile;
+
+    public AdminProductDto(String productName, String productDescription, Integer productPrice, Integer productQuantity, Boolean productHide, String productEtc, String productType) {
         this.productName = productName;
-        this.productImage = productImage;
         this.productDescription = productDescription;
         this.productPrice = productPrice;
         this.productQuantity = productQuantity;

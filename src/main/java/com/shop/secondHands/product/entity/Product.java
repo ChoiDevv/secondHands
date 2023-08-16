@@ -59,10 +59,10 @@ public class Product extends BaseEntity {
         this.productType = productType;
     }
 
-    public static Product toEntity(AdminProductDto adminProductDto, Boolean productHide) {
+    public static Product toEntity(AdminProductDto adminProductDto, String productImage, Boolean productHide) {
         return Product.builder()
                 .productName(adminProductDto.getProductName())
-                .productImage(adminProductDto.getProductImage())
+                .productImage("/files/" + productImage)
                 .productDescription(adminProductDto.getProductDescription())
                 .productPrice(adminProductDto.getProductPrice())
                 .productQuantity(adminProductDto.getProductQuantity())
