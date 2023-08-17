@@ -1,6 +1,6 @@
 package com.shop.secondHands.product.entity;
 
-import com.shop.secondHands.utils.BaseEntity;
+import com.shop.secondHands.configuration.BaseEntity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import lombok.Getter;

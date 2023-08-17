@@ -38,7 +38,7 @@ public class ProductServiceImpl implements ProductService {
 
     private String saveFile(MultipartFile imageFile) throws IOException {
         String _imageName = imageFile.getOriginalFilename();
-        String path = System.getProperty("user.dir") + "/src/main/resources/static/files/";
+        String path = System.getProperty("user.dir") + "/src/main/resources/static/image/";
 
         UUID uuid = UUID.randomUUID();
         String imageName = uuid + "_" + _imageName;

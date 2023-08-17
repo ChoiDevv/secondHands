@@ -1,18 +1,13 @@
 package com.shop.secondHands.product.entity;
 
 import com.shop.secondHands.admin.dto.AdminProductDto;
-import com.shop.secondHands.utils.BaseEntity;
+import com.shop.secondHands.configuration.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 
 @Getter
 @Entity
@@ -62,7 +57,7 @@ public class Product extends BaseEntity {
     public static Product toEntity(AdminProductDto adminProductDto, String productImage, Boolean productHide) {
         return Product.builder()
                 .productName(adminProductDto.getProductName())
-                .productImage("/files/" + productImage)
+                .productImage(productImage)
                 .productDescription(adminProductDto.getProductDescription())
                 .productPrice(adminProductDto.getProductPrice())
                 .productQuantity(adminProductDto.getProductQuantity())

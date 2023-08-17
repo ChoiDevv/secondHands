@@ -1,7 +1,7 @@
 package com.shop.secondHands.user.entity;
 
 import com.shop.secondHands.user.dto.UserDto;
-import com.shop.secondHands.utils.BaseEntity;
+import com.shop.secondHands.configuration.BaseEntity;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;

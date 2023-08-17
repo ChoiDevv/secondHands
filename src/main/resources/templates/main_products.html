@@ -1,7 +1,7 @@
 <html layout:decorate="~{layout}">
     <div layout:fragment="content" th:each="product: ${products}">
         <div class="card" style="width: 18rem;">
-            <img src="..." class="card-img-top" alt="...">
+            <img th:src="|/${product.productImage}/|" class="card-img-top" alt="이미지를 불러올 수 없습니다.">
             <div class="card-body">
                 <a th:href="@{|/main/products/${product.productId}|}" th:text="${product.productName}"></a>
                 <p th:text="|가격 : ${product.productPrice}|" class="card-text"></p>

@@ -1,4 +1,4 @@
-package com.shop.secondHands.utils.security;
+package com.shop.secondHands.configuration.security;
 
 import com.shop.secondHands.user.entity.UserRole;
 import com.shop.secondHands.user.entity.Users;
