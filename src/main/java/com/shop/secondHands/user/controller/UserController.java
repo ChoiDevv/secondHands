@@ -1,5 +1,6 @@
 package com.shop.secondHands.user.controller;
 
+import com.shop.secondHands.user.dto.BasketDto;
 import com.shop.secondHands.user.dto.UserDto;
 import com.shop.secondHands.user.service.UserService;
 import jakarta.validation.Valid;
@@ -7,12 +8,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.security.Principal;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -63,7 +66,9 @@ public class UserController {
     }
 
     @GetMapping(value = "/main/purchase")
-    public String purchase() {
+    public String purchase(Model model, Authentication authentication) {
+        List<BasketDto> baskets = userService.baskets(authentication);
+        model.addAttribute("baskets", baskets);
         return "main_purchase";
     }
 }

@@ -2,6 +2,7 @@ package com.shop.secondHands.user.service;
 
 import com.shop.secondHands.product.entity.Product;
 import com.shop.secondHands.product.service.ProductServiceImpl;
+import com.shop.secondHands.user.dto.BasketDto;
 import com.shop.secondHands.user.dto.UserDto;
 import com.shop.secondHands.user.entity.Basket;
 import com.shop.secondHands.user.entity.UserRole;
@@ -9,6 +10,7 @@ import com.shop.secondHands.user.entity.Users;
 import com.shop.secondHands.user.exception.UserNotFoundException;
 import com.shop.secondHands.user.repository.BasketRepository;
 import com.shop.secondHands.user.repository.UserRepository;
+import com.shop.secondHands.user.repository.querydsl.DslBasketRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,15 +19,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
 import java.security.Principal;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
     private final PasswordEncoder passwordEncoder;
+    private final ProductServiceImpl productService;
+
     private final UserRepository userRepository;
     private final BasketRepository basketRepository;
-    private final ProductServiceImpl productService;
+    private final DslBasketRepository dslBasketRepository;
 
     @Override
     public void userRegister(UserDto userDto, BindingResult bindingResult) {
@@ -56,6 +61,12 @@ public class UserServiceImpl implements UserService {
         } else {
             saveBasket(currentUser, productId);
         }
+    }
+
+    @Override
+    public List<BasketDto> baskets(Authentication authentication) {
+        Integer userId = userRepository.findByUsername(currentUsername(authentication)).get().getId();
+        return dslBasketRepository.userBaskets(userId);
     }
 
     private String currentUsername(Authentication authentication) {

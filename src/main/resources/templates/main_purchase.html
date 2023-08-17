@@ -1,5 +1,11 @@
 <html layout:decorate="~{layout}">
-    <div layout:fragment="content">
+    <div layout:fragment="content" th:each="basket: ${baskets}">
         <h1>구매 페이지</h1>
+        <p th:text="|유저 아이디 : ${basket.userId}"></p>
+        <p th:text="|상품 이름 : ${basket.productName}"></p>
+        <p th:text="|상품 이미지 : ${basket.productImage}"></p>
+        <p th:text="|상품 설명 : ${basket.productDescription}"></p>
+        <p th:text="|선택된 개수 : ${basket.selectedQuantity}"></p>
+        <p th:text="|상품 기타 : ${basket.productEtc}"></p>
     </div>
 </html>
