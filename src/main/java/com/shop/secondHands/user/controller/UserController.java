@@ -71,4 +71,11 @@ public class UserController {
         model.addAttribute("baskets", baskets);
         return "main_purchase";
     }
+
+    @GetMapping(value = "/main/my-cart")
+    public String myCart(Model model, Authentication authentication) {
+        List<BasketDto> baskets = userService.myCart(authentication);
+        model.addAttribute("baskets", baskets);
+        return "main_cart";
+    }
 }

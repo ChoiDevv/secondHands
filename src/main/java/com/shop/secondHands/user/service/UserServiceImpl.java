@@ -69,6 +69,12 @@ public class UserServiceImpl implements UserService {
         return dslBasketRepository.userBaskets(userId);
     }
 
+    @Override
+    public List<BasketDto> myCart(Authentication authentication) {
+        Integer userId = userRepository.findByUsername(currentUsername(authentication)).get().getId();
+        return dslBasketRepository.userBaskets(userId);
+    }
+
     private String currentUsername(Authentication authentication) {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         return userDetails.getUsername();

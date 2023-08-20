@@ -18,4 +18,6 @@ public interface UserService {
     void registerCart(Integer productId, Authentication authentication);
 
     List<BasketDto> baskets(Authentication authentication);
+
+    List<BasketDto> myCart(Authentication authentication);
 }
