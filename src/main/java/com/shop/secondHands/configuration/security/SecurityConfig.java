@@ -19,6 +19,7 @@ public class SecurityConfig {
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((authorizeHttpRequests) -> authorizeHttpRequests
+                        .requestMatchers("/main").permitAll()
                         .requestMatchers("/main/**").hasRole("USER")
                         .requestMatchers("/image/**").permitAll()
 //                        .requestMatchers("/admin/**").hasRole("ADMIN")
@@ -26,7 +27,7 @@ public class SecurityConfig {
                         .anyRequest().authenticated())
                 .formLogin((formLogin) -> formLogin
                         .loginPage("/login")
-                        .defaultSuccessUrl("/main/products"))
+                        .defaultSuccessUrl("/main"))
         ;
         return http.build();
     }

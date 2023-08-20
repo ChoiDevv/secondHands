@@ -16,7 +16,7 @@ public class ProductController {
 
     private final ProductService productService;
 
-    @GetMapping(value = "/main/products")
+    @GetMapping(value = "/main")
     public String products(Model model) {
         List<ProductDto> products = productService.products();
         model.addAttribute("products", products);
