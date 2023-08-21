@@ -1,10 +1,13 @@
 package com.shop.secondHands.user.dto;
 
+import com.shop.secondHands.user.entity.Users;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.Optional;
 
 @Getter
 @Setter
@@ -37,5 +40,15 @@ public class UserDto {
         this.city = city;
         this.sex = sex;
         this.phoneNumber = phoneNumber;
+    }
+
+    public static UserDto of(Users user) {
+        return UserDto.builder()
+                .username(user.getUsername())
+                .name(user.getName())
+                .city(user.getCity())
+                .sex(user.getSex())
+                .phoneNumber(user.getPhoneNumber())
+                .build();
     }
 }

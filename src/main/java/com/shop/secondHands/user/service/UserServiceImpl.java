@@ -75,6 +75,12 @@ public class UserServiceImpl implements UserService {
         return dslBasketRepository.userBaskets(userId);
     }
 
+    @Override
+    public UserDto myProfile(Authentication authentication) {
+        Integer userId = userRepository.findByUsername(currentUsername(authentication)).get().getId();
+        return UserDto.of(findByUserId(userId));
+    }
+
     private String currentUsername(Authentication authentication) {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         return userDetails.getUsername();

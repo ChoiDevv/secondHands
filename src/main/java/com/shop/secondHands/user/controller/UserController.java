@@ -78,4 +78,11 @@ public class UserController {
         model.addAttribute("baskets", baskets);
         return "main_cart";
     }
+
+    @GetMapping(value = "/main/my-profile")
+    public String myProfile(Model model, Authentication authentication) {
+        UserDto userInfo = userService.myProfile(authentication);
+        model.addAttribute("userInfo", userInfo);
+        return "main_info";
+    }
 }

@@ -20,4 +20,6 @@ public interface UserService {
     List<BasketDto> baskets(Authentication authentication);
 
     List<BasketDto> myCart(Authentication authentication);
+
+    UserDto myProfile(Authentication authentication);
 }
