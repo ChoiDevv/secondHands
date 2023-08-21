@@ -1,0 +1,34 @@
+.c-main {
+    background: linear-gradient(0deg, #3344bb, #5599dd, #eeffcc);
+}
+.shadow {
+    position: relative;
+}
+.shadow::after {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: block;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    content: "";
+}
+.c-sub {
+    background-color: #efc;
+}
+.c-point {
+    background-color: #5599dd;
+}
+c-white {
+    color: #fff;
+}
+.second-container {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+.second-wrapper {
+    margin: 0 auto;
+}
