@@ -6,7 +6,6 @@
             <tr>
                 <th>상품 id</th>
                 <th>상품 이름</th>
-                <th>상품 이미지</th>
                 <th>상품 가격</th>
                 <th>상품 개수</th>
                 <th>상품 보이기</th>
@@ -18,7 +17,7 @@
             <tr>
                 <td th:text="${product.productId}"></td>
                 <td th:text="${product.productName}"></td>
-                <td th:text="${product.productImage}"></td>
+                <img th:src="|/${product.productImage}/|" class="card-img-top" alt="이미지를 불러올 수 없습니다.">
                 <td th:text="${product.productPrice}"></td>
                 <td th:text="${product.productQuantity}"></td>
                 <td th:text="${product.productHide}"></td>
