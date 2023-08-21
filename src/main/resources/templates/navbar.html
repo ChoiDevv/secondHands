@@ -15,7 +15,10 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">Event</a>
                 </li>
-
+                <li class="nav-item">
+                    <a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/login}">로그인</a>
+                    <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/main/logout}">로그아웃</a>
+                </li>
             </ul>
         </div>
     </div>
