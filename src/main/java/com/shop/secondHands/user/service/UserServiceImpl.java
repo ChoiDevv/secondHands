@@ -7,16 +7,19 @@ import com.shop.secondHands.user.dto.UserDto;
 import com.shop.secondHands.user.entity.Basket;
 import com.shop.secondHands.user.entity.UserRole;
 import com.shop.secondHands.user.entity.Users;
+import com.shop.secondHands.user.exception.BasketNotFoundException;
 import com.shop.secondHands.user.exception.UserNotFoundException;
 import com.shop.secondHands.user.repository.BasketRepository;
 import com.shop.secondHands.user.repository.UserRepository;
 import com.shop.secondHands.user.repository.querydsl.DslBasketRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.security.Principal;
 import java.util.List;
@@ -79,6 +82,17 @@ public class UserServiceImpl implements UserService {
     public UserDto myProfile(Authentication authentication) {
         Integer userId = userRepository.findByUsername(currentUsername(authentication)).get().getId();
         return UserDto.of(findByUserId(userId));
+    }
+
+    @Override
+    public void deleteBaskets(Integer basketId, Authentication authentication) {
+        Basket basket = basketRepository.findById(basketId)
+                .orElseThrow(() -> new BasketNotFoundException("존재하지 않는 장바구니입니다."));
+
+        if (!basket.getUsers().getUsername().equals(currentUsername(authentication))) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "삭제 권한이 없습니다.");
+        }
+        basketRepository.delete(basket);
     }
 
     private String currentUsername(Authentication authentication) {

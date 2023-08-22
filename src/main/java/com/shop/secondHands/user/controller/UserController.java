@@ -62,7 +62,7 @@ public class UserController {
     @GetMapping(value = "/main/products/{id}/my-cart")
     public String registerCart(@PathVariable("id") Integer productId, Authentication authentication) {
         userService.registerCart(productId, authentication);
-        return "main_cart_completed";
+        return "main_basket_completed";
     }
 
     @GetMapping(value = "/main/purchase")
@@ -76,7 +76,7 @@ public class UserController {
     public String myCart(Model model, Authentication authentication) {
         List<BasketDto> baskets = userService.myCart(authentication);
         model.addAttribute("baskets", baskets);
-        return "main_cart";
+        return "main_basket";
     }
 
     @GetMapping(value = "/main/my-profile")
@@ -84,5 +84,11 @@ public class UserController {
         UserDto userInfo = userService.myProfile(authentication);
         model.addAttribute("userInfo", userInfo);
         return "main_info";
+    }
+
+    @GetMapping(value = "/main/basket/{id}")
+    public String deleteBaskets(@PathVariable("id") Integer basketId, Authentication authentication) {
+        userService.deleteBaskets(basketId, authentication);
+        return "main_basket";
     }
 }

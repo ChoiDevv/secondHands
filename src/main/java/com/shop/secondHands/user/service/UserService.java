@@ -22,4 +22,6 @@ public interface UserService {
     List<BasketDto> myCart(Authentication authentication);
 
     UserDto myProfile(Authentication authentication);
+
+    void deleteBaskets(Integer basketId, Authentication authentication);
 }

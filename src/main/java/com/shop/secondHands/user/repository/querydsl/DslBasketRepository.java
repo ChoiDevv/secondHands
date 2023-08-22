@@ -20,7 +20,7 @@ public class DslBasketRepository {
 
     public List<BasketDto> userBaskets(Integer userId) {
         return jpaQueryFactory
-                .select(new QBasketDto(basket.users.id, product.productName, product.productImage, product.productDescription, basket.count, product.productEtc))
+                .select(new QBasketDto(basket.users.id, users.username, basket.id, product.productName, product.productImage, product.productDescription, basket.count, product.productEtc))
                 .from(basket)
                 .innerJoin(users).on(basket.users.id.eq(users.id))
                 .innerJoin(product).on(basket.product.id.eq(product.id))
