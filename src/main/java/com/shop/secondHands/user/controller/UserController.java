@@ -1,6 +1,7 @@
 package com.shop.secondHands.user.controller;
 
 import com.shop.secondHands.user.dto.BasketDto;
+import com.shop.secondHands.user.dto.UserAddressDto;
 import com.shop.secondHands.user.dto.UserDto;
 import com.shop.secondHands.user.service.UserService;
 import jakarta.validation.Valid;
@@ -82,13 +83,31 @@ public class UserController {
     @GetMapping(value = "/main/my-profile")
     public String myProfile(Model model, Authentication authentication) {
         UserDto userInfo = userService.myProfile(authentication);
+        List<UserAddressDto> userAddresses = userService.userAddress(authentication);
         model.addAttribute("userInfo", userInfo);
-        return "main_info";
+        model.addAttribute("userAddresses", userAddresses);
+        return "main_profile";
     }
 
     @GetMapping(value = "/main/basket/{id}")
     public String deleteBaskets(@PathVariable("id") Integer basketId, Authentication authentication) {
         userService.deleteBaskets(basketId, authentication);
         return "main_basket";
+    }
+
+    @GetMapping(value = "/main/register/address")
+    public String myAddress(Authentication authentication) {
+        return "main_register_address";
+    }
+
+    @PostMapping(value = "/main/register/address")
+    public String registerAddress(@Valid UserAddressDto userAddressDto, BindingResult bindingResult, Authentication authentication) {
+        try {
+            userService.registerAddress(userAddressDto, authentication);
+        } catch (Exception e) {
+            bindingResult.reject("registerFailed", e.getMessage());
+            return "main_register_address";
+        }
+        return "main_profile";
     }
 }

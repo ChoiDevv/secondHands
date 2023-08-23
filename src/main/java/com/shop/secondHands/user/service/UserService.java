@@ -1,6 +1,7 @@
 package com.shop.secondHands.user.service;
 
 import com.shop.secondHands.user.dto.BasketDto;
+import com.shop.secondHands.user.dto.UserAddressDto;
 import com.shop.secondHands.user.dto.UserDto;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
@@ -24,4 +25,8 @@ public interface UserService {
     UserDto myProfile(Authentication authentication);
 
     void deleteBaskets(Integer basketId, Authentication authentication);
+
+    List<UserAddressDto> userAddress(Authentication authentication);
+
+    void registerAddress(UserAddressDto userAddressDto, Authentication authentication);
 }
