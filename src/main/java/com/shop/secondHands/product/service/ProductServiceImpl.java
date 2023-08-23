@@ -31,6 +31,11 @@ public class ProductServiceImpl implements ProductService {
                 .orElseThrow(() -> new ProductNotFoundException("해당 게시물을 찾을 수 없습니다.")));
     }
 
+    @Override
+    public List<ProductDto> productSearch(String keyword) {
+        return ProductDto.of(productRepository.findByProductNameContaining(keyword));
+    }
+
     public void save(AdminProductDto adminProductDto, Boolean productHide, MultipartFile productImage) throws IOException {
         String image = saveFile(productImage);
         productRepository.save(Product.toEntity(adminProductDto, image, productHide));

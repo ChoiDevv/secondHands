@@ -10,4 +10,6 @@ public interface ProductService {
     List<ProductDto> products();
 
     ProductDto product(Integer id);
+
+    List<ProductDto> productSearch(String keyword);
 }
