@@ -4,6 +4,11 @@
 .shadow {
     position: relative;
 }
+.logo{
+    font-weight: bold;
+    color:#fff;
+    text-decoration:none;
+}
 .shadow::after {
     position: absolute;
     background-color: rgba(255, 255, 255, 0.8);
@@ -32,3 +37,43 @@ c-white {
 .second-wrapper {
     margin: 0 auto;
 }
+/*nav start*/
+.navbar{
+    background: #5599dd !important;
+    padding: 0 10px !important;
+    box-sizing:border-box;
+}
+#navbarSupportedContent{
+   width: 100%;
+   justify-content: space-between;
+}
+.navbar form{
+    display: flex;
+    width: 40%;
+    padding: 10px;
+    box-sizing: border-box;
+    height: 60px;
+    margin: 0 auto;
+}
+.navbar form > .btn {
+    font-size: 12px;
+    border: 1px solid #fff;
+    width: 60px;
+    color: #fff;
+}
+.navbar-nav > .nav-item > .nav-link ,.navbar-nav > .nav-item > .active{
+    color:#fff;
+}
+/*nav end*/
+
+/* content basic start*/
+.content{
+   height: calc(100vh - 60px);
+   overflow-y: scroll;
+   background-color: #eee;
+   margin:0;
+   padding:20px;
+   box-sizing:border-box;
+}
+
+/* content basic end*/
