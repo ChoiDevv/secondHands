@@ -12,21 +12,20 @@
         </form>
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="/main/my-cart">My cart</a>
+                <a class="nav-link" aria-current="page" href="/main/my-cart" sec:authorize="isAuthenticated()">My cart</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/main/my-profile">My Profile</a>
+                <a class="nav-link" href="/main/my-profile" sec:authorize="isAuthenticated()">My Profile</a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Dropdown
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Dropdown link
                 </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
             </li>
             <li class="nav-item">
                 <a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/login}">로그인</a>
