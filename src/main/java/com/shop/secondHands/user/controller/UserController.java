@@ -68,7 +68,7 @@ public class UserController {
 
     @GetMapping(value = "/main/purchase")
     public String purchase(Model model, Authentication authentication) {
-        List<BasketDto> baskets = userService.baskets(authentication);
+        List<BasketDto> baskets = userService.purchaseList(authentication);
         model.addAttribute("baskets", baskets);
         return "main_purchase";
     }

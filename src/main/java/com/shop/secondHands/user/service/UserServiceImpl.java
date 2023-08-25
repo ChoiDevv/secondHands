@@ -71,9 +71,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<BasketDto> baskets(Authentication authentication) {
+    public List<BasketDto> purchaseList(Authentication authentication) {
         Integer userId = userId(authentication);
-        return dslBasketRepository.userBaskets(userId);
+        Integer totalPrice = 0;
+        List<BasketDto> baskets = dslBasketRepository.userBaskets(userId);
+
+        for (BasketDto basket: baskets) {
+            totalPrice = totalPrice + basket.getBasketPrice();
+            basket.setTotalPrice(totalPrice);
+        }
+
+        return baskets;
     }
 
     @Override

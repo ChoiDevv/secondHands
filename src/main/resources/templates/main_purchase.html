@@ -10,13 +10,16 @@
                 <img th:src="|/${basket.productImage}/|" class="card-img-top" alt="이미지를 불러올 수 없습니다.">
                 <p th:text="|유저 아이디 : ${basket.userId}"></p>
                 <p th:text="|상품 이름 : ${basket.productName}"></p>
+                <p th:text="|상품 가격 : ${basket.productPrice}"></p>
                 <p th:text="|상품 설명 : ${basket.productDescription}"></p>
                 <p th:text="|선택된 개수 : ${basket.selectedQuantity}"></p>
                 <p th:text="|상품 기타 : ${basket.productEtc}"></p>
+                <p th:text="|선택된 가격 : ${basket.basketPrice}"></p>
                 <a href="javascript:void(0);" class="delete" th:data-uri="@{|/main/basket/${basket.basketId}|}" sec:authorize="isAuthenticated()" th:if="${basket.username != null and #authentication.getPrincipal().getUsername() == basket.username}" th:text="삭제"></a>
             </div>
+            <p th:text="|총 가격 : ${basket.totalPrice}"></p>
         </div>
-        <a href="#">구매하기</a>
+        <a href="">결제하기</a>
     </div>
     <script layout:fragment="script" type="text/javascript">
         const delete_elements = document.getElementsByClassName("delete");
