@@ -3,6 +3,7 @@ package com.shop.secondHands.user.service;
 import com.shop.secondHands.product.entity.Product;
 import com.shop.secondHands.product.service.ProductServiceImpl;
 import com.shop.secondHands.user.dto.BasketDto;
+import com.shop.secondHands.user.dto.PurchaseTotalPriceDto;
 import com.shop.secondHands.user.dto.UserAddressDto;
 import com.shop.secondHands.user.dto.UserDto;
 import com.shop.secondHands.user.entity.Basket;
@@ -73,15 +74,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<BasketDto> purchaseList(Authentication authentication) {
         Integer userId = userId(authentication);
-        Integer totalPrice = 0;
-        List<BasketDto> baskets = dslBasketRepository.userBaskets(userId);
-
-        for (BasketDto basket: baskets) {
-            totalPrice = totalPrice + basket.getBasketPrice();
-            basket.setTotalPrice(totalPrice);
-        }
-
-        return baskets;
+        return dslBasketRepository.userBaskets(userId);
     }
 
     @Override
@@ -117,6 +110,22 @@ public class UserServiceImpl implements UserService {
     public void registerAddress(UserAddressDto userAddressDto, Authentication authentication) {
         Users currentUser = findByUserId(userRepository.findByUsername(currentUsername(authentication)).get().getId());
         userAddressRepository.save(UserAddress.toEntity(userAddressDto, currentUser));
+    }
+
+    @Override
+    public PurchaseTotalPriceDto calculateTotalPrice(Authentication authentication) {
+        Integer userId = userId(authentication);
+        Integer _totalPrice = 0;
+        List<BasketDto> baskets = dslBasketRepository.userBaskets(userId);
+
+        for (BasketDto basket: baskets) {
+            _totalPrice = _totalPrice + basket.getBasketPrice();
+        }
+
+        PurchaseTotalPriceDto totalPrice = new PurchaseTotalPriceDto();
+        totalPrice.setTotalPrice(_totalPrice);
+
+        return totalPrice;
     }
 
     private Integer userId(Authentication authentication) {

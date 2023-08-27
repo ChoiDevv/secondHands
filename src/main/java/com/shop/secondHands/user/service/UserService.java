@@ -1,6 +1,7 @@
 package com.shop.secondHands.user.service;
 
 import com.shop.secondHands.user.dto.BasketDto;
+import com.shop.secondHands.user.dto.PurchaseTotalPriceDto;
 import com.shop.secondHands.user.dto.UserAddressDto;
 import com.shop.secondHands.user.dto.UserDto;
 import org.springframework.security.core.Authentication;
@@ -29,4 +30,6 @@ public interface UserService {
     List<UserAddressDto> userAddress(Authentication authentication);
 
     void registerAddress(UserAddressDto userAddressDto, Authentication authentication);
+
+    PurchaseTotalPriceDto calculateTotalPrice(Authentication authentication);
 }

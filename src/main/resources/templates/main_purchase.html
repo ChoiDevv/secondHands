@@ -17,7 +17,7 @@
                 <p th:text="|선택된 가격 : ${basket.basketPrice}"></p>
                 <a href="javascript:void(0);" class="delete" th:data-uri="@{|/main/basket/${basket.basketId}|}" sec:authorize="isAuthenticated()" th:if="${basket.username != null and #authentication.getPrincipal().getUsername() == basket.username}" th:text="삭제"></a>
             </div>
-            <p th:text="|총 가격 : ${basket.totalPrice}"></p>
+            <p th:text="|총 가격 : ${totalPrice.totalPrice}"></p>
         </div>
         <a href="">결제하기</a>
     </div>

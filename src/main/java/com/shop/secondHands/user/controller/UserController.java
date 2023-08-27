@@ -1,6 +1,7 @@
 package com.shop.secondHands.user.controller;
 
 import com.shop.secondHands.user.dto.BasketDto;
+import com.shop.secondHands.user.dto.PurchaseTotalPriceDto;
 import com.shop.secondHands.user.dto.UserAddressDto;
 import com.shop.secondHands.user.dto.UserDto;
 import com.shop.secondHands.user.service.UserService;
@@ -69,7 +70,9 @@ public class UserController {
     @GetMapping(value = "/main/purchase")
     public String purchase(Model model, Authentication authentication) {
         List<BasketDto> baskets = userService.purchaseList(authentication);
+        PurchaseTotalPriceDto totalPrice = userService.calculateTotalPrice(authentication);
         model.addAttribute("baskets", baskets);
+        model.addAttribute("totalPrice", totalPrice);
         return "main_purchase";
     }
 

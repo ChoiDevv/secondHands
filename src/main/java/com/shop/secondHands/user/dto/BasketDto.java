@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
-@Setter
 @NoArgsConstructor
 public class BasketDto {
 
@@ -20,7 +19,6 @@ public class BasketDto {
     private Integer selectedQuantity;
     private String productEtc;
     private Integer basketPrice;
-    private Integer totalPrice;
 
     @QueryProjection
     public BasketDto(Integer userId, String username, Integer basketId, String productName, Integer productPrice, String productImage, String productDescription, Integer selectedQuantity, String productEtc, Integer basketPrice) {

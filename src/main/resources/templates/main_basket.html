@@ -1,20 +1,20 @@
 <html layout:decorate="~{layout}">
     <div layout:fragment="content">
+        <h1>장바구니 목록</h1>
         <div th:if="${#lists.isEmpty(baskets)}">
             <p>장바구니가 비어 있습니다.</p>
         </div>
         <div th:unless="${#lists.isEmpty(baskets)}">
             <div th:each="basket: ${baskets}">
-                <h1>장바구니 목록</h1>
                 <img th:src="|/${basket.productImage}/|" class="card-img-top" alt="이미지를 불러올 수 없습니다.">
                 <p th:text="|유저 아이디 : ${basket.userId}"></p>
                 <p th:text="|상품 이름 : ${basket.productName}"></p>
                 <p th:text="|상품 설명 : ${basket.productDescription}"></p>
                 <p th:text="|선택된 개수 : ${basket.selectedQuantity}"></p>
                 <p th:text="|상품 기타 : ${basket.productEtc}"></p>
-                <a href="/main/purchase">구매하기</a>
                 <a href="javascript:void(0);" class="delete" th:data-uri="@{|/main/basket/${basket.basketId}|}" sec:authorize="isAuthenticated()" th:if="${basket.username != null and #authentication.getPrincipal().getUsername() == basket.username}" th:text="삭제"></a>
             </div>
+            <a href="/main/purchase">구매하기</a>
         </div>
     </div>
     <script layout:fragment="script" type="text/javascript">
