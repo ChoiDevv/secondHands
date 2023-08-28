@@ -95,7 +95,7 @@ public class UserController {
     @GetMapping(value = "/main/basket/{id}")
     public String deleteBaskets(@PathVariable("id") Integer basketId, Authentication authentication) {
         userService.deleteBaskets(basketId, authentication);
-        return "main_basket";
+        return "redirect:/main";
     }
 
     @GetMapping(value = "/main/register/address")
