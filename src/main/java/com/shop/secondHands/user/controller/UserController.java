@@ -111,6 +111,6 @@ public class UserController {
             bindingResult.reject("registerFailed", e.getMessage());
             return "main_register_address";
         }
-        return "main_profile";
+        return "redirect:/main/my-profile";
     }
 }
