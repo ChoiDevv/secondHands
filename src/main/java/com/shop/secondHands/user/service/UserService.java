@@ -1,9 +1,6 @@
 package com.shop.secondHands.user.service;
 
-import com.shop.secondHands.user.dto.BasketDto;
-import com.shop.secondHands.user.dto.PurchaseTotalPriceDto;
-import com.shop.secondHands.user.dto.UserAddressDto;
-import com.shop.secondHands.user.dto.UserDto;
+import com.shop.secondHands.user.dto.*;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
@@ -32,4 +29,6 @@ public interface UserService {
     void registerAddress(UserAddressDto userAddressDto, Authentication authentication);
 
     PurchaseTotalPriceDto calculateTotalPrice(Authentication authentication);
+
+    UserInfoDto userInfo(Authentication authentication);
 }

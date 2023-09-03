@@ -1,9 +1,6 @@
 package com.shop.secondHands.user.controller;
 
-import com.shop.secondHands.user.dto.BasketDto;
-import com.shop.secondHands.user.dto.PurchaseTotalPriceDto;
-import com.shop.secondHands.user.dto.UserAddressDto;
-import com.shop.secondHands.user.dto.UserDto;
+import com.shop.secondHands.user.dto.*;
 import com.shop.secondHands.user.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -71,8 +68,10 @@ public class UserController {
     public String purchase(Model model, Authentication authentication) {
         List<BasketDto> baskets = userService.purchaseList(authentication);
         PurchaseTotalPriceDto totalPrice = userService.calculateTotalPrice(authentication);
+        UserInfoDto userInfo = userService.userInfo(authentication);
         model.addAttribute("baskets", baskets);
         model.addAttribute("totalPrice", totalPrice);
+        model.addAttribute("userInfo", userInfo);
         return "main_purchase";
     }
 

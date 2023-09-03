@@ -2,10 +2,7 @@ package com.shop.secondHands.user.service;
 
 import com.shop.secondHands.product.entity.Product;
 import com.shop.secondHands.product.service.ProductServiceImpl;
-import com.shop.secondHands.user.dto.BasketDto;
-import com.shop.secondHands.user.dto.PurchaseTotalPriceDto;
-import com.shop.secondHands.user.dto.UserAddressDto;
-import com.shop.secondHands.user.dto.UserDto;
+import com.shop.secondHands.user.dto.*;
 import com.shop.secondHands.user.entity.Basket;
 import com.shop.secondHands.user.entity.UserAddress;
 import com.shop.secondHands.user.entity.UserRole;
@@ -126,6 +123,15 @@ public class UserServiceImpl implements UserService {
         totalPrice.setTotalPrice(_totalPrice);
 
         return totalPrice;
+    }
+
+    @Override
+    public UserInfoDto userInfo(Authentication authentication) {
+        Users currentUser = findByUserId(userId(authentication));
+        Users user = findByUserId(currentUser.getId());
+        UserAddress userAddress = userAddressRepository.findByUsers(currentUser).get(0);
+
+        return UserInfoDto.of(user, userAddress);
     }
 
     private Integer userId(Authentication authentication) {

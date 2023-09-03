@@ -24,6 +24,13 @@
             </div>
             <!-- 장바구니 모든 가격 -->
             <p th:text="${totalPrice.totalPrice}" th:id="totalPrice"></p>
+            <!-- 유저 정보(디폴트는 히든) -->
+            <div style="display:none">
+                <p th:text="${userInfo.name}" th:id="name"></p>
+                <p th:text="${userInfo.phoneNumber}" th:id="phoneNumber"></p>
+                <p th:text="${userInfo.landNumberAddress}" th:id="landNumberAddress"></p>
+                <p th:text="${userInfo.postalCode}" th:id="postalCode"></p>
+            </div>
         </div>
         <button onclick="requestPay()">결제하기</button>
     </div>
@@ -45,6 +52,10 @@
 
         var productName = $('#productName').text();
         var totalPrice = $('#totalPrice').text();
+        var name = $('#name').text();
+        var phoneNumber = $('#phoneNumber').text();
+        var landNumberAddress = $('#landNumberAddress').text();
+        var postalCode = $('#postalCode').text();
 
         function requestPay() {
             IMP.request_pay(
@@ -54,11 +65,11 @@
                     merchant_uid: "",
                     name: productName,
                     amount: totalPrice,
-      				buyer_email: "gildong@gmail.com",
-      				buyer_name: "홍길동",
-      				buyer_tel: "010-4242-4242",
-      				buyer_addr: "서울특별시 강남구 신사동",
-      				buyer_postcode: "01181"
+      				buyer_email: "",
+      				buyer_name: name,
+      				buyer_tel: phoneNumber,
+      				buyer_addr: landNumberAddress,
+      				buyer_postcode: postalCode
 
                 },
                 function (rsp) {
