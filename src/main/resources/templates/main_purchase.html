@@ -8,14 +8,21 @@
             <div th:each="basket: ${baskets}">
                 <h1>구매 페이지</h1>
                 <img th:src="|/${basket.productImage}/|" class="card-img-top" alt="이미지를 불러올 수 없습니다.">
+                <!-- 상품 이름 -->
                 <p th:text="${basket.productName}" th:id="productName"></p>
+                <!-- 상품 가격 -->
                 <p th:text="${basket.productPrice}" th:id="productPrice"></p>
+                <!-- 상품 설명 -->
                 <p th:text="${basket.productDescription}" th:id="productDescription"></p>
+                <!-- 선택된 개수 -->
                 <p th:text="${basket.selectedQuantity}" th:id="selectedQuantity"></p>
+                <!-- 상품 기타 -->
                 <p th:text="${basket.productEtc}" th:id="productEtc"></p>
+                <!-- 선택된 상품 가격 -->
                 <p th:text="${basket.basketPrice}" th:id="basketPrice"></p>
                 <a href="javascript:void(0);" class="delete" th:data-uri="@{|/main/basket/${basket.basketId}|}" sec:authorize="isAuthenticated()" th:if="${basket.username != null and #authentication.getPrincipal().getUsername() == basket.username}" th:text="삭제"></a>
             </div>
+            <!-- 장바구니 모든 가격 -->
             <p th:text="${totalPrice.totalPrice}" th:id="totalPrice"></p>
         </div>
         <button onclick="requestPay()">결제하기</button>
