@@ -8,16 +8,15 @@
             <div th:each="basket: ${baskets}">
                 <h1>구매 페이지</h1>
                 <img th:src="|/${basket.productImage}/|" class="card-img-top" alt="이미지를 불러올 수 없습니다.">
-                <p th:text="|유저 아이디 : ${basket.userId}"></p>
-                <p th:text="|상품 이름 : ${basket.productName}"></p>
-                <p th:text="|상품 가격 : ${basket.productPrice}"></p>
-                <p th:text="|상품 설명 : ${basket.productDescription}"></p>
-                <p th:text="|선택된 개수 : ${basket.selectedQuantity}"></p>
-                <p th:text="|상품 기타 : ${basket.productEtc}"></p>
-                <p th:text="|선택된 가격 : ${basket.basketPrice}"></p>
+                <p th:text="${basket.productName}" th:id="productName"></p>
+                <p th:text="${basket.productPrice}" th:id="productPrice"></p>
+                <p th:text="${basket.productDescription}" th:id="productDescription"></p>
+                <p th:text="${basket.selectedQuantity}" th:id="selectedQuantity"></p>
+                <p th:text="${basket.productEtc}" th:id="productEtc"></p>
+                <p th:text="${basket.basketPrice}" th:id="basketPrice"></p>
                 <a href="javascript:void(0);" class="delete" th:data-uri="@{|/main/basket/${basket.basketId}|}" sec:authorize="isAuthenticated()" th:if="${basket.username != null and #authentication.getPrincipal().getUsername() == basket.username}" th:text="삭제"></a>
             </div>
-            <p th:text="|총 가격 : ${totalPrice.totalPrice}"></p>
+            <p th:text="${totalPrice.totalPrice}" th:id="totalPrice"></p>
         </div>
         <button onclick="requestPay()">결제하기</button>
     </div>
@@ -37,14 +36,17 @@
         var IMP = window.IMP;
         IMP.init("imp83026887");
 
+        var productName = $('#productName').text();
+        var totalPrice = $('#totalPrice').text();
+
         function requestPay() {
             IMP.request_pay(
                 {
-                    pg: "html5_inicis",		//KG이니시스 pg파라미터 값
-                    pay_method: "card",		//결제 방법
-                    merchant_uid: "1234578",//주문번호
-                    name: "당근 10kg",		//상품 명
-                    amount: 200,			//금액
+                    pg: "html5_inicis",
+                    pay_method: "card",
+                    merchant_uid: "",
+                    name: productName,
+                    amount: totalPrice,
       				buyer_email: "gildong@gmail.com",
       				buyer_name: "홍길동",
       				buyer_tel: "010-4242-4242",
@@ -57,7 +59,7 @@
                     if (rsp.success) {
                         //서버 검증 요청 부분
                     } else {
-                        alert("결제에 실패하였습니다. 에러 내용: " + rsp.error_msg);
+                        alert(rsp.error_msg);
                     }
                 }
             );
