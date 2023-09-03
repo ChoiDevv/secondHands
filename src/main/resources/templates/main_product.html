@@ -1,32 +1,56 @@
 <html layout:decorate="~{layout}">
     <div layout:fragment="content">
-        <h1>Product Details</h1>
-        <table>
-            <thead>
-            <tr>
-                <th>상품 id</th>
-                <th>상품 이름</th>
-                <th>상품 가격</th>
-                <th>상품 개수</th>
-                <th>상품 보이기</th>
-                <th>상품 기타</th>
-                <th>상품 종류</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td th:text="${product.productId}"></td>
-                <td th:text="${product.productName}"></td>
-                <img th:src="|/${product.productImage}/|" class="card-img-top" alt="이미지를 불러올 수 없습니다.">
-                <td th:text="${product.productPrice}"></td>
-                <td th:text="${product.productQuantity}"></td>
-                <td th:text="${product.productHide}"></td>
-                <td th:text="${product.productEtc}"></td>
-                <td th:text="${product.productType}"></td>
-            </tr>
-            </tbody>
-        </table>
-        <a th:href="@{|/main/products/${product.productId}/purchase|}">구매</a>
-        <a th:href="@{|/main/products/${product.productId}/my-cart|}">장바구니에 담기</a>
+        <div class="detail_wrapper">
+            <div class="img-wrapper">
+                <img
+                    th:src="|/${product.productImage}/|"
+                    class="card-img-top"
+                    alt="이미지를 불러올 수 없습니다."
+                />
+            </div>
+            <div class="detail_box">
+                <!-- <div>
+                    <p class="label">상품 id</p>
+                    <p th:text="${product.productId}"></p>
+                </div> -->
+                <div>
+                    <p class="label">상품명</p>
+                    <p
+                        class="product_name"
+                        th:text="${product.productName}"
+                    ></p>
+                </div>
+                <div>
+                    <p class="label">가격</p>
+                    <p th:text="${product.productPrice}"></p>
+                </div>
+                <div>
+                    <p class="label">수량</p>
+                    <p th:text="${product.productQuantity}"></p>
+                </div>
+                <!-- <div>
+                    <p class="label">상품보이기</p>
+                    <p th:text="${product.productHide}"></p>
+                </div> -->
+                <div>
+                    <p class="label">기타</p>
+                    <p th:text="${product.productEtc}"></p>
+                </div>
+                <div>
+                    <p class="label">종류</p>
+                    <p th:text="${product.productType}"></p>
+                </div>
+                <div class="detail_btn_box">
+                    <a
+                        th:href="@{|/main/products/${product.productId}/purchase|}"
+                        >구매</a
+                    >
+                    <a
+                        th:href="@{|/main/products/${product.productId}/my-cart|}"
+                        >장바구니에 담기</a
+                    >
+                </div>
+            </div>
+        </div>
     </div>
 </html>
