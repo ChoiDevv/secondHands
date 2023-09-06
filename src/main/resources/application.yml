@@ -10,3 +10,7 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: none
+
+portone:
+  api_key: "4861000422344416"
+  api_secret: "DIBssYnCOBiI65A7TgJegtwWzz65npYz1BZS0sT3lUgKuA5rp5niYx328dBGuGHGVzu5ySRrgkCXtliF"

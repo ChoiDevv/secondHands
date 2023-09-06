@@ -134,11 +134,11 @@ public class UserServiceImpl implements UserService {
         return UserInfoDto.of(user, userAddress);
     }
 
-    private Integer userId(Authentication authentication) {
+    public Integer userId(Authentication authentication) {
         return userRepository.findByUsername(currentUsername(authentication)).get().getId();
     }
 
-    private String currentUsername(Authentication authentication) {
+    public String currentUsername(Authentication authentication) {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         return userDetails.getUsername();
     }
