@@ -13,6 +13,7 @@ import com.shop.secondHands.user.repository.BasketRepository;
 import com.shop.secondHands.user.repository.UserAddressRepository;
 import com.shop.secondHands.user.repository.UserRepository;
 import com.shop.secondHands.user.repository.querydsl.DslBasketRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
@@ -158,5 +159,11 @@ public class UserServiceImpl implements UserService {
 
     public Basket findBasket(Users currentUser, Integer productId) {
         return basketRepository.findByUsersAndProduct(currentUser, findByProductId(productId));
+    }
+
+    @Transactional
+    public void deleteBasket(Authentication authentication) {
+        Users currentUser = findByUserId(userId(authentication));
+        basketRepository.deleteByUsers(currentUser);
     }
 }

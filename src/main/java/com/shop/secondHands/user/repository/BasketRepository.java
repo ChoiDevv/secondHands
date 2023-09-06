@@ -13,6 +13,6 @@ public interface BasketRepository extends JpaRepository<Basket, Integer> {
 
     Boolean existsByUsersAndProduct(Users users, Product product);
     Basket findByUsersAndProduct(Users users, Product product);
-
     List<Basket> findByUsers(Users users);
+    void deleteByUsers(Users users);
 }

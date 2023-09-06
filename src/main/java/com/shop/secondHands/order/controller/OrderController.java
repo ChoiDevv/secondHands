@@ -19,8 +19,8 @@ public class OrderController {
     private final OrderService orderService;
 
     @PostMapping(value = "/main/purchase/card")
-    public String verifyPurchase(@RequestBody Map<String, String> data, Authentication authentication) throws IamportResponseException, IOException {
-        orderService.verifyPurchase(data, authentication);
+    public String purchase(@RequestBody Map<String, String> data, Authentication authentication) throws IamportResponseException, IOException {
+        orderService.purchase(data, authentication);
         return "main_purchase_completed";
     }
 

@@ -33,7 +33,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void verifyPurchase(Map<String, String> data, Authentication authentication) throws IamportResponseException, IOException {
+    public void purchase(Map<String, String> data, Authentication authentication) throws IamportResponseException, IOException {
         String impUid = data.get("imp_uid");
         String merchantUid = data.get("merchant_uid");
         int amount = Integer.parseInt(data.get("amount"));
@@ -41,6 +41,11 @@ public class OrderServiceImpl implements OrderService {
         IamportResponse<Payment> portOneInquiry = portOneInquiry(impUid);
         verifyPayment(portOneInquiry, amount);
         saveOrder(merchantUid, amount, authentication);
+        deleteBasket(authentication);
+    }
+
+    private void deleteBasket(Authentication authentication) {
+        userService.deleteBasket(authentication);
     }
 
     private void saveOrder(String merchantUid, int amount, Authentication authentication) {

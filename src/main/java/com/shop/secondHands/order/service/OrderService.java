@@ -9,5 +9,5 @@ import java.util.Map;
 
 @Service
 public interface OrderService {
-    void verifyPurchase(Map<String, String> data, Authentication authentication) throws IamportResponseException, IOException;
+    void purchase(Map<String, String> data, Authentication authentication) throws IamportResponseException, IOException;
 }
