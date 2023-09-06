@@ -31,8 +31,8 @@
                 <p th:text="${userInfo.landNumberAddress}" th:id="landNumberAddress"></p>
                 <p th:text="${userInfo.postalCode}" th:id="postalCode"></p>
             </div>
+            <button onclick="requestPay()">결제하기</button>
         </div>
-        <button onclick="requestPay()">결제하기</button>
     </div>
 
     <script layout:fragment="script" type="text/javascript">
