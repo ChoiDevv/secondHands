@@ -1,0 +1,67 @@
+<html layout:decorate="~{layout}">
+    <div layout:fragment="content">
+        <h1>배송지 정보</h1>
+        <form th:action="@{/main/register/address}" th:object="${userAddressDto}" method="post">
+            <input type="text" id="postalCode" name="postalCode" placeholder="우편번호">
+            <input type="button" onclick="post_code()" value="우편번호 찾기"><br>
+            <input type="text" id="roadNameAddress" name="roadNameAddress" placeholder="도로명주소">
+            <input type="text" id="landNumberAddress" name="landNumberAddress" placeholder="지번주소">
+            <span id="guide" style="color:#999;display:none"></span>
+            <input type="text" id="reference" name="reference" placeholder="참고항목">
+            <input type="text" id="detailedAddress" name="detailedAddress" placeholder="상세주소">
+            <input type="submit" value="저장">
+        </form>
+
+    </div>
+
+    <script layout:fragment="script">
+        function post_code() {
+            new daum.Postcode({
+                oncomplete: function(data) {
+                    var roadAddr = data.roadAddress;
+                    var extraRoadAddr = '';
+
+                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                        extraRoadAddr += data.bname;
+                    }
+
+                    if(data.buildingName !== '' && data.apartment === 'Y'){
+                       extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                    }
+
+                    if(extraRoadAddr !== ''){
+                        extraRoadAddr = ' (' + extraRoadAddr + ')';
+                    }
+
+
+                    document.getElementById('postalCode').value = data.zonecode;
+                    document.getElementById("roadNameAddress").value = roadAddr;
+                    document.getElementById("landNumberAddress").value = data.jibunAddress;
+
+
+                    if(roadAddr !== ''){
+                        document.getElementById("reference").value = extraRoadAddr;
+                    } else {
+                        document.getElementById("reference").value = '';
+                    }
+
+                    var guideTextBox = document.getElementById("guide");
+
+                    if(data.autoRoadAddress) {
+                        var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
+                        guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
+                        guideTextBox.style.display = 'block';
+
+                    } else if(data.autoJibunAddress) {
+                        var expJibunAddr = data.autoJibunAddress;
+                        guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
+                        guideTextBox.style.display = 'block';
+                    } else {
+                        guideTextBox.innerHTML = '';
+                        guideTextBox.style.display = 'none';
+                    }
+                }
+            }).open();
+        }
+    </script>
+</html>

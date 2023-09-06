@@ -1,0 +1,27 @@
+<html layout:decorate="~{layout}">
+    <div layout:fragment="content">
+        <div th:each="userInfo: ${userInfo}">
+            <h1>내 정보</h1>
+            <p th:text="|아이디 : ${userInfo.username}"></p>
+            <p th:text="|이름 : ${userInfo.name}"></p>
+            <p th:text="|도시 : ${userInfo.city}"></p>
+            <p th:text="|성별 : ${userInfo.sex}"></p>
+            <p th:text="|핸드폰 번호 : ${userInfo.phoneNumber}"></p>
+        </div>
+        <div th:if="${#lists.isEmpty(userAddresses)}">
+            <h1>내 배송지</h1>
+            <p>저장된 배송지가 없습니다.</p>
+            <a href="/main/register/address">새 배송지 등록하기</a>
+        </div>
+        <div th:unless="${#lists.isEmpty(userAddresses)}">
+            <div th:each="userAddress: ${userAddresses}">
+                <h1>내 배송지</h1>
+                <p th:text="|우편번호 : ${userAddress.postalCode}"></p>
+                <p th:text="|도로명 주소 : ${userAddress.roadNameAddress}"></p>
+                <p th:text="|지번 주소 : ${userAddress.landNumberAddress}"></p>
+                <p th:text="|참고 항목 : ${userAddress.reference}"></p>
+                <p th:text="|상세 주소 : ${userAddress.detailedAddress}"></p>
+            </div>
+        </div>
+    </div>
+</html>

@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SecondHands Platform</title>
+</head>
+<body>
+<h1> 관리자 상품 등록</h1>
+
+    <form th:action="@{/admin/product/register}" th:object="${adminProductDto}" method="post" enctype="multipart/form-data">
+        <label for="productName">상품명</label>
+        <input type="text" name="productName" id="productName">
+        <div role="alert" th:if="${#fields.hasErrors('productName')}">
+            <span th:each="err : ${#fields.errors('productName')}" th:text="${err}" class="error"></span>
+        </div>
+        <br>
+
+        <label for="productImage">상품 이미지</label>
+        <input type="file" name="productImage" id="productImage">
+        <br>
+
+        <label for="productDescription">상품 설명</label>
+        <input type="text" name="productDescription" id="productDescription">
+        <div role="alert" th:if="${#fields.hasErrors('productDescription')}">
+            <span th:each="err : ${#fields.errors('productDescription')}" th:text="${err}" class="error"></span>
+        </div>
+        <br>
+
+        <label for="productPrice">상품 가격</label>
+        <input type="number" name="productPrice" id="productPrice">
+        <div role="alert" th:if="${#fields.hasErrors('productPrice')}">
+            <span th:each="err : ${#fields.errors('productPrice')}" th:text="${err}" class="error"></span>
+        </div>
+        <br>
+
+        <label for="productQuantity">상품 개수</label>
+        <input type="number" name="productQuantity" id="productQuantity">
+        <div role="alert" th:if="${#fields.hasErrors('productQuantity')}">
+            <span th:each="err : ${#fields.errors('productQuantity')}" th:text="${err}" class="error"></span>
+        </div>
+        <br>
+
+        <label for="productType">상품 종류</label>
+        <input type="text" name="productType" id="productType">
+        <div role="alert" th:if="${#fields.hasErrors('productType')}">
+            <span th:each="err : ${#fields.errors('productType')}" th:text="${err}" class="error"></span>
+        </div>
+        <br>
+
+        <label for="productEtc">상품 기타</label>
+        <input type="text" name="productEtc" id="productEtc">
+        <br>
+
+        <input type="submit" value="저장">
+    </form>
+</body>
+</html>

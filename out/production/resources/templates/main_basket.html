@@ -1,0 +1,52 @@
+<html layout:decorate="~{layout}">
+    <div layout:fragment="content">
+        <!-- <h1>장바구니 목록</h1> -->
+        <div class="cart-wrapper">
+            <div th:if="${#lists.isEmpty(baskets)}" class="none-card-list">
+                <h2>장바구니에 담긴 상품이 없습니다.</h2>
+                <p>원하는 상품을 장바구니에 담아보세요 !</p>
+            </div>
+            <div th:unless="${#lists.isEmpty(baskets)}" class="basket_content">
+                <div th:each="basket: ${baskets}" class="basket_box">
+                    <div class="img-wrapper">
+                        <img
+                            th:src="|/${basket.productImage}/|"
+                            class="card-img-top"
+                            alt="이미지를 불러올 수 없습니다."
+                        />
+                    </div>
+                    <div class="basket_text_box">
+                        <a
+                            href="javascript:void(0);"
+                            class="delete"
+                            th:data-uri="@{|/main/basket/${basket.basketId}|}"
+                            sec:authorize="isAuthenticated()"
+                            th:if="${basket.username != null and #authentication.getPrincipal().getUsername() == basket.username}"
+                            th:text="삭제"
+                        ></a>
+                        <!-- <p th:text="|유저 아이디 : ${basket.userId}"></p> -->
+                        <p th:text="|상품 이름 : ${basket.productName}"></p>
+                        <p
+                            th:text="|상품 설명 : ${basket.productDescription}"
+                        ></p>
+                        <p
+                            th:text="|선택된 개수 : ${basket.selectedQuantity}"
+                        ></p>
+                        <!-- <p th:text="|상품 기타 : ${basket.productEtc}"></p> -->
+                    </div>
+                </div>
+            </div>
+            <a class="buy_btn" href="/main/purchase">구매하기</a>
+        </div>
+    </div>
+    <script layout:fragment="script" type="text/javascript">
+        const delete_elements = document.getElementsByClassName("delete");
+        Array.from(delete_elements).forEach(function (element) {
+            element.addEventListener("click", function () {
+                if (confirm("정말로 삭제하시겠습니까?")) {
+                    location.href = this.dataset.uri;
+                }
+            });
+        });
+    </script>
+</html>

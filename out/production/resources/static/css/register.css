@@ -1,0 +1,56 @@
+.register-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.register-box {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    height: 85%;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    background: #fefefe;
+    box-sizing: border-box;
+    padding: 20px;
+    box-shadow: 3px 3px 20px gray;
+}
+.register-box > div {
+    display: flex;
+    flex-direction: column;
+}
+.register-box > div > label {
+    width: 100px;
+    font-size: 12px;
+    font-weight: 500;
+}
+.register-box > div,
+.register-box.button {
+    margin-bottom: 30px;
+}
+.register-box > div > input {
+    width: 400px;
+}
+.register-wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+.register-btn {
+    background: #001431;
+    border: none;
+    padding: 10px 5px;
+    border-radius: 10px;
+    width: 400px;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 30px;
+}
+.register-title {
+    font-size: 20px;
+    font-weight: bold;
+}
+.register-sub-text {
+    font-size: 12px;
+    color: #333;
+}
